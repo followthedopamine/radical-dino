@@ -1,0 +1,9 @@
+D:\Code\radical-dino\.mono\temp\bin\Debug\Radical Dino.dll
+D:\Code\radical-dino\.mono\temp\bin\Debug\Radical Dino.pdb
+D:\Code\radical-dino\.mono\temp\obj\Debug\Radical Dino.csproj.AssemblyReference.cache
+D:\Code\radical-dino\.mono\temp\obj\Debug\Radical Dino.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\radical-dino\.mono\temp\obj\Debug\Radical Dino.AssemblyInfoInputs.cache
+D:\Code\radical-dino\.mono\temp\obj\Debug\Radical Dino.AssemblyInfo.cs
+D:\Code\radical-dino\.mono\temp\obj\Debug\Radical Dino.csproj.CoreCompileInputs.cache
+D:\Code\radical-dino\.mono\temp\obj\Debug\Radical Dino.dll
+D:\Code\radical-dino\.mono\temp\obj\Debug\Radical Dino.pdb

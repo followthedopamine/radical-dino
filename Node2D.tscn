@@ -1,3 +1,114 @@
-[gd_scene format=2]
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/art/dino-surfing.png" type="Texture" id=1]
+[ext_resource path="res://Enemy.cs" type="Script" id=2]
+[ext_resource path="res://assets/art/wave.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/bg.png" type="Texture" id=4]
+[ext_resource path="res://WaveAnimate.cs" type="Script" id=5]
+[ext_resource path="res://DinoAnimation.cs" type="Script" id=6]
+[ext_resource path="res://DinoMovement.cs" type="Script" id=7]
+[ext_resource path="res://assets/art/pterodactyl.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=2]
+resource_name = "WaveBounce"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.95 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 520.5, 10 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "DinoBounce"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 3.03143, 0.307786 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16.5 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 24.5, 20 )
 
 [node name="Node2D" type="Node2D"]
+position = Vector2( 4, -394 )
+
+[node name="Bg" type="Sprite" parent="."]
+position = Vector2( 507, 493 )
+texture = ExtResource( 4 )
+
+[node name="Wave" type="Sprite" parent="."]
+position = Vector2( 99, 498 )
+scale = Vector2( 1, 0.954115 )
+texture = ExtResource( 3 )
+script = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wave"]
+anims/WaveBounce = SubResource( 2 )
+
+[node name="Ceiling" type="RigidBody2D" parent="."]
+position = Vector2( -4, 393 )
+mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2( 510, -7 )
+shape = SubResource( 4 )
+
+[node name="Floor" type="RigidBody2D" parent="."]
+position = Vector2( -4, 393 )
+mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 511, 203 )
+shape = SubResource( 4 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2( 36, -45 )
+mode = 2
+gravity_scale = 100.0
+script = ExtResource( 7 )
+speed = 350
+
+[node name="Dino-surfing" type="Sprite" parent="RigidBody2D"]
+position = Vector2( 82, 556 )
+texture = ExtResource( 1 )
+script = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody2D/Dino-surfing"]
+anims/DinoBounce = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( 78, 554.5 )
+shape = SubResource( 1 )
+
+[node name="Enemy" type="KinematicBody2D" parent="."]
+position = Vector2( 1046, 423 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2( 1.5, -5 )
+shape = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="Enemy"]
+texture = ExtResource( 8 )
